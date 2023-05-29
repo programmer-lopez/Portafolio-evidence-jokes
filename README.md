@@ -82,7 +82,12 @@ npx prisma init --datasource-provider sqlite
 #More information in our documentation:
 #https://pris.ly/d/getting-started
 ```
-
+```sh
 npx prisma db push
+```
+```sh
 npm install --save-dev ts-node tsconfig-paths
+```
+```sh
 npx ts-node --require tsconfig-paths/register prisma/seed.ts
+```
