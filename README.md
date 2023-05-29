@@ -57,10 +57,16 @@ cp -R ../my-old-remix-app/app app
 cd ..
 #Base de Datos
 
-```sh npm install --save-dev prisma ```
-```sh npm install @prisma/client ```
+```sh 
+npm install --save-dev prisma
+```
+```sh 
+npm install @prisma/client 
+```
 
-```sh npx prisma init --datasource-provider sqlite ```
+```sh 
+npx prisma init --datasource-provider sqlite
+```
 
 ```sh
 #✔ Your Prisma schema was created at prisma/schema.prisma
