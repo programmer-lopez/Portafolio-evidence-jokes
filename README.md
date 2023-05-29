@@ -62,6 +62,7 @@ npm install @prisma/client
 
 npx prisma init --datasource-provider sqlite
 
+```sh
 #✔ Your Prisma schema was created at prisma/schema.prisma
 #  You can now open it in your favorite editor.
 
@@ -74,6 +75,7 @@ npx prisma init --datasource-provider sqlite
 
 #More information in our documentation:
 #https://pris.ly/d/getting-started
+```
 
 npx prisma db push
 npm install --save-dev ts-node tsconfig-paths
