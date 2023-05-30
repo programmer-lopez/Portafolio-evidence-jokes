@@ -88,6 +88,11 @@ npx prisma db push
 ```sh
 npm install --save-dev ts-node tsconfig-paths
 ```
-```sh
+
 npx ts-node --require tsconfig-paths/register prisma/seed.ts
+```
+
+.env Add
+```sh
+SESSION_SECRET="remoxrox"
 ```
