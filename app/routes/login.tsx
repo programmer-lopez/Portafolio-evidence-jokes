@@ -1,6 +1,7 @@
 import type {
     ActionArgs,
     LinksFunction,
+    V2_MetaFunction,
   } from "@remix-run/node";
   import {
     Link,
@@ -11,12 +12,21 @@ import type {
   import stylesUrl from "~/styles/login.css";
   import { db } from "~/utils/db.server";
   import { badRequest } from "~/utils/request.server";
-  import { createUserSession, login } from "~/utils/session.server";
+  import { createUserSession, login, register } from "~/utils/session.server";
   
   export const links: LinksFunction = () => [
     { rel: "stylesheet", href: stylesUrl },
   ];
+  export const meta: V2_MetaFunction = () => {
+    const description =
+      "Login to submit your own jokes to Remix Jokes!";
   
+    return [
+      { name: "description", content: description },
+      { name: "twitter:description", content: description },
+      { title: "Remix Jokes | Login" },
+    ];
+  };
   function validateUsername(username: string) {
     if (username.length < 3) {
       return "Usernames must be at least 3 characters long";
@@ -86,11 +96,6 @@ import type {
         // if there's no user, return the fields and a formError
         return createUserSession(user.id, redirectTo);
         // if there is a user, create their session and redirect to /jokes
-        return badRequest({
-          fieldErrors: null,
-          fields,
-          formError: "Not implemented",
-        });
       }
       case "register": {
         const userExists = await db.user.findFirst({
@@ -104,6 +109,15 @@ import type {
           });
         }
         // create the user
+        const user = await register({ username, password });
+      if (!user) {
+        return badRequest({
+          fieldErrors: null,
+          fields,
+          formError:
+            "Something went wrong trying to create a new user.",
+        });
+      }
         // create their session and redirect to /jokes
         return badRequest({
           fieldErrors: null,
